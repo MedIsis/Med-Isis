@@ -2,6 +2,7 @@ import bcrypt
 from flask import Flask, render_template, session, g, abort, request, url_for,flash,redirect
 from flask_login import login_user, logout_user, LoginManager
 from pymongo import MongoClient
+import pymongo.a
 from flask_pymongo import PyMongo
 
 from werkzeug.security import generate_password_hash
@@ -25,7 +26,7 @@ def login():
         if login_user:
             if bcrypt.hashpw(request.form['password'].encode(),login_user['password'].encode()) == login_user['password']:
                 # session['username'] = request.form['username']
-                return "yo success"
+                return redirect(url_for('profile'))
         return 'Invalid username/password combination'
     return redirect(url_for('index'))
 
@@ -36,14 +37,24 @@ def register():
         existing_user = users.find_one({'username' : request.form['email']})
         if existing_user is None:
             hashpass = bcrypt.hashpw(request.form['password'].encode(), salt)
-            print hashpass
             users.insert({'username' : request.form['email'], 'password' : hashpass})
             print 'hi user entered'
             # session['username'] = request.form['email']
-            return 'hello namaste'
+            return redirect(url_for('profile'))
 
         return 'That username already exists!'
     return render_template(('index.html'))
+@app.route('/profile',methods=['GET', 'POST'])
+def profile():
+    if   request.method=='POST':
+        original_id=
+        print original_id
+        db.profile.insert({'first_name':request.form['first_name'],'last_name':request.form['last_name'],'email':request.form['email'],'blood_group':request.form['blood_group']})
+        print 'everything inserted'
+        # render_template('profile.html',)
+
+    return render_template(('profile.html'))
+
 
 
 if __name__ == '__main__':

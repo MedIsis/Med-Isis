@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='own.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='login.js') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div class="container"></div><div class="row"></div><div class="container">
+    <h1>Edit Profile</h1>
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+          <h6>Upload a different photo...</h6>
+
+          <input type="file" class="form-control">
+        </div>
+      </div>
+
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a>
+          <i class="fa fa-coffee"></i>
+          <strong>Enter the following details to your profile</strong>
+        </div>
+        <h3>Personal info</h3>
+
+        <form method='POST' action="/profile" class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="first_name"value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="" name="last_name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Blood Group</label>
+            <div class="col-lg-8">
+                <select id="user_time_zone" name="blood_group" class="form-control">
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="O+" selected="selected">O+</option>
+                  <option value="O-">O-</option>
+                  <option value="AB-">AB-</option>
+                </select>            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="email" value="abcd@gmail.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label">Allergies</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" value="" name="allergy">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input class="btn btn-lg btn-success btn-block" type="submit" value="Save">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='own.js') }}"></script>
+<hr>
+</body>
+</html>
