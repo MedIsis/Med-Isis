@@ -7,9 +7,20 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='own.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='login.js') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
-    <title>Title</title>
+    <script type="text/javascript">
+function Check(val){
+ var element=document.getElementById('allergies');
+ if(val=="others")
+   document.getElementById('allergies').style.display='textarea';
+    else
+       document.getElementById('allergies').style.display='block';
+}
+
+
+</script>
+    <title>Form</title>
 </head>
-<body>
+<body background="http://www.wallcoo.net/cartoon/abstract_blue_backgrounds_1920x1200/wallpapers/1024x768/Abstract%20Blue%20backgrounds%208.jpg">
 
 
 <div class="container"></div><div class="row"></div><div class="container">
@@ -37,19 +48,36 @@
 
         <form method='POST' action="/profile" class="form-horizontal" role="form">
           <div class="form-group">
-            <label class="col-lg-3 control-label">First name:</label>
+            <label class="col-lg-3 control-label">First name:*</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" name="first_name"value="">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Last name:</label>
+            <label class="col-lg-3 control-label">Last name:*</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="" name="last_name">
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-lg-3 control-label">Blood Group</label>
+            <label class="col-lg-3 control-label">Gender</label>
+            <div class="col-lg-8">
+                <select id="user_time_zone" name="gender" class="form-control">
+                  <option value="F" selected="selected">Female</option>
+                  <option value="M">Male</option>
+                  <option value="O">Other</option>
+
+                </select>            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Date Of Birth(yyyy-mm-dd)</label>
+            <div class="col-md-8">
+              <input class="form-control" type="date" value="" name="dob">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Blood Group*</label>
             <div class="col-lg-8">
                 <select id="user_time_zone" name="blood_group" class="form-control">
                   <option value="A+">A+</option>
@@ -63,16 +91,64 @@
                 </select>            </div>
           </div>
           <div class="form-group">
+            <label class="col-md-3 control-label" type="text" pattern="[0-9]{10}$" required>Phone Number*(91xxxxxxxxxx)</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" maxlength="12" value="" name="phno">
+            </div>
+          </div>
+          <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" name="email" value="abcd@gmail.com">
             </div>
           </div>
 
+
           <div class="form-group">
-            <label class="col-md-3 control-label">Allergies</label>
+            <label class="col-lg-3 control-label">Allergy</label>
+            <div class="col-lg-8">
+                <select id="allergies" name="allergies" class="form-control"  onchange='Check(this.value);'>
+                  <option value="food_allergy">Food Allergy</option>
+                  <option value="dust_allergy">Dust_Allergy</option>
+                  <option value="pey_allergy">Pet Allergy</option>
+                  <option value="latex_allergy">Latex Allergy</option>
+                  <option value="drug_allergy">Drug Allergy</option>
+                  <option value="pollen_allergy">Pollen Allergy</option>
+                  <option type="text" value=" ">Other</option>
+
+                </select>      <textarea  rows="5" cols="35" name="allergies" id="allergies" style='display:text;'>
+              </textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Are You Diabetic?</label>
+            <div class="col-lg-8">
+                <select id="user_time_zone" name="diabeties" class="form-control">
+                  <option value="yes" selected="selected">Yes</option>
+                  <option value="no">No</option>
+
+                </select>            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Are You a Heart Patient?</label>
+            <div class="col-lg-8">
+                <select id="user_time_zone" name="heart" class="form-control">
+                  <option value="yes" selected="selected">Yes</option>
+                  <option value="no">No</option>
+
+                </select>            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Blood Pressure</label>
+            <div class="col-lg-8">
+              <textarea  rows="5" cols="35" name="bp" id="bp" style='display:text;'>
+              </textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label" type="text" pattern="[0-9]{10}$" required >Emergency Contact*(91xxxxxxxxxx)</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" value="" name="allergy">
+              <input class="form-control" type="text" maxlength="12" value="" name="emrcntct">
             </div>
           </div>
           <div class="form-group">
