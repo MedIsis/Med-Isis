@@ -1,6 +1,7 @@
 body{
+
     background: url(http://mymaplist.com/img/parallax/back.png);
-	background-color: #444;
+	background-image:url("http://www.spyderonlines.com/images/wallpapers/blue-theme-wallpaper/blue-theme-wallpaper-7.jpg");
     background: url(http://mymaplist.com/img/parallax/pinlayer2.png),url(http://mymaplist.com/img/parallax/pinlayer1.png),url(http://mymaplist.com/img/parallax/back.png);
 }
 

@@ -2,7 +2,7 @@ import bcrypt
 from flask import Flask, render_template, session, g, abort, request, url_for,flash,redirect
 from flask_login import login_user, logout_user, LoginManager
 from pymongo import MongoClient
-import pymongo.a
+import pymongo
 from flask_pymongo import PyMongo
 
 from werkzeug.security import generate_password_hash
@@ -47,9 +47,7 @@ def register():
 @app.route('/profile',methods=['GET', 'POST'])
 def profile():
     if   request.method=='POST':
-        original_id=
-        print original_id
-        db.profile.insert({'first_name':request.form['first_name'],'last_name':request.form['last_name'],'email':request.form['email'],'blood_group':request.form['blood_group']})
+        db.profile.insert({'first_name':request.form['first_name'],'phno':request.form['phno'],'allergies':request.form['allergies'],'diabeties':request.form['diabeties'],'heart':request.form['heart'],'dob':request.form['dob'],'last_name':request.form['last_name'],'email':request.form['email'],'gender':request.form['gender'],'blood_group':request.form['blood_group'],'emrcntct':request.form['emrcntct'],'bp':request.form['bp']})
         print 'everything inserted'
         # render_template('profile.html',)
 
