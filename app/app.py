@@ -47,7 +47,7 @@ def register():
 @app.route('/profile',methods=['GET', 'POST'])
 def profile():
     if   request.method=='POST':
-        db.profile.insert({'first_name':request.form['first_name'],'phno':request.form['phno'],'allergies':request.form['allergies'],'diabeties':request.form['diabeties'],'heart':request.form['heart'],'dob':request.form['dob'],'last_name':request.form['last_name'],'email':request.form['email'],'gender':request.form['gender'],'blood_group':request.form['blood_group'],'emrcntct':request.form['emrcntct'],'bp':request.form['bp']})
+        db.profile.insert({'first_name':request.form['first_name'],'phno':request.form['phno'],'allergies':request.form['allergies'],'diabeties':request.form['diabeties'],'heart':request.form['heart'],'dob':request.form['dob'],'last_name':request.form['last_name'],'email':request.form['email'],'gender':request.form['gender'],'panno':request.form['panno'],'m1':request.form['m1'],'t1':request.form['t1'],'blood_group':request.form['blood_group'],'emrcntct':request.form['emrcntct'],'bp':request.form['bp']})
         print 'everything inserted'
         # render_template('profile.html',)
 
