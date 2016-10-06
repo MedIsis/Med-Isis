@@ -11,11 +11,17 @@ import os
 salt=bcrypt.gensalt()
 connection=MongoClient('localhost',27017)
 db=connection.Users
-
 app=Flask(__name__)
-
+app.config.from_object(__name__)
+app.secret_key='my secret'
+# app.config.update(
+#     # DEBUG=True,
+#     SECRET_KEY='ABC'
+# )
 @app.route('/')
-def indexpage():
+def home():
+    # if 'username' in session:
+    #     return redirect(url_for('profile'))
     return render_template('index.html')
 @app.route('/login',methods=['GET', 'POST'])
 def login():
@@ -25,7 +31,8 @@ def login():
         print login_user['password'],login_user['username'],bcrypt.hashpw(request.form['password'].encode(),salt)
         if login_user:
             if bcrypt.hashpw(request.form['password'].encode(),login_user['password'].encode()) == login_user['password']:
-                # session['username'] = request.form['username']
+                session['username'] = request.form['email']
+                print session['username']
                 return redirect(url_for('profile'))
         return 'Invalid username/password combination'
     return redirect(url_for('index'))
@@ -38,20 +45,38 @@ def register():
         if existing_user is None:
             hashpass = bcrypt.hashpw(request.form['password'].encode(), salt)
             users.insert({'username' : request.form['email'], 'password' : hashpass})
-            print 'hi user entered'
-            # session['username'] = request.form['email']
+            session['username'] = request.form['email']
+            db.profile.insert({'ref_id':session['username']})
+            # print 'hi user entered'
+
             return redirect(url_for('profile'))
 
         return 'That username already exists!'
-    return render_template(('index.html'))
+    print session['username']
+    return render_template('index.html')
+
 @app.route('/profile',methods=['GET', 'POST'])
 def profile():
-    if   request.method=='POST':
-        db.profile.insert({'first_name':request.form['first_name'],'phno':request.form['phno'],'allergies':request.form['allergies'],'diabeties':request.form['diabeties'],'heart':request.form['heart'],'dob':request.form['dob'],'last_name':request.form['last_name'],'email':request.form['email'],'gender':request.form['gender'],'blood_group':request.form['blood_group'],'emrcntct':request.form['emrcntct'],'bp':request.form['bp']})
-        print 'everything inserted'
-        # render_template('profile.html',)
+    if request.method=='POST':
+        if 'username' in session:
 
-    return render_template(('profile.html'))
+            # print session['username']
+            curuser=db.profile.find_one({'ref_id':session['username']})
+            db.profile.update_one({'ref_id':session['username']},{'$set':{'first_name':request.form['first_name'],'phno':request.form['phno'],'allergies':request.form['allergies'],'diabeties':request.form['diabeties'],'heart':request.form['heart'],'dob':request.form['dob'],'last_name':request.form['last_name'],'email':request.form['email'],'gender':request.form['gender'],'blood_group':request.form['blood_group'],'emrcntct':request.form['emrcntct'],'bp':request.form['bp']}},upsert=False)
+
+            print 'everything inserted'
+
+            return redirect(url_for('profile'))
+        return redirect(url_for('home'))
+    return render_template('profile.html')
+
+
+@app.route('/displayprofile',methods=['GET','POST'])
+def displayprofile():
+    curuser=db.profile.find_one({'ref_id':session['username']})
+    print session['username']
+    return render_template('profile.html',curuser=curuser)
+
 
 
 

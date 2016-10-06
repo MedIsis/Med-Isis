@@ -93,13 +93,13 @@ function Check(val){
           <div class="form-group">
             <label class="col-md-3 control-label" type="text" pattern="[0-9]{10}$" required>Phone Number*(91xxxxxxxxxx)</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" maxlength="12" value="" name="phno">
+              <input class="form-control" type="text" maxlength="12" value="{{curuser['phno']}}" name="phno">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" name="email" value="abcd@gmail.com">
+              <input class="form-control" type="text" name="email" value="{{curuser['email']}}">
             </div>
           </div>
 
@@ -123,7 +123,7 @@ function Check(val){
           <div class="form-group">
             <label class="col-lg-3 control-label">Are You Diabetic?</label>
             <div class="col-lg-8">
-                <select id="user_time_zone" name="diabeties" class="form-control">
+                <select id="user_time_zone"  name="diabeties" class="form-control">
                   <option value="yes" selected="selected">Yes</option>
                   <option value="no">No</option>
 
@@ -132,7 +132,7 @@ function Check(val){
           <div class="form-group">
             <label class="col-lg-3 control-label">Are You a Heart Patient?</label>
             <div class="col-lg-8">
-                <select id="user_time_zone" name="heart" class="form-control">
+                <select id="heart_problem" name="heart" class="form-control">
                   <option value="yes" selected="selected">Yes</option>
                   <option value="no">No</option>
 
@@ -148,7 +148,7 @@ function Check(val){
           <div class="form-group">
             <label class="col-md-3 control-label" type="text" pattern="[0-9]{10}$" required >Emergency Contact*(91xxxxxxxxxx)</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" maxlength="12" value="" name="emrcntct">
+              <input class="form-control" type="text" maxlength="12" value="{{curuser['emrcntct']}}" name="emrcntct">
             </div>
           </div>
           <div class="form-group">
