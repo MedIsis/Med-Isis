@@ -50,13 +50,13 @@ function Check(val){
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:*</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" name="first_name"value="">
+              <input class="form-control" type="text" name="first_name"value="" required>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Last name:*</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="" name="last_name">
+              <input class="form-control" type="text" value="" name="last_name" required>
             </div>
           </div>
 
@@ -79,7 +79,7 @@ function Check(val){
           <div class="form-group">
             <label class="col-lg-3 control-label">Blood Group*</label>
             <div class="col-lg-8">
-                <select id="user_time_zone" name="blood_group" class="form-control">
+                <select id="user_time_zone" name="blood_group" class="form-control" required>
                   <option value="A+">A+</option>
                   <option value="A-">A-</option>
                   <option value="B+">B+</option>
@@ -91,15 +91,25 @@ function Check(val){
                 </select>            </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label" type="text" pattern="[0-9]{10}$" required>Phone Number*(91xxxxxxxxxx)</label>
+            <label class="col-md-3 control-label" type="text" >Pan Card Number*(AAAPL1234C)</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" maxlength="12" value="{{curuser['phno']}}" name="phno">
+<<<<<<< HEAD
+              <input class="form-control" type="text" maxlength="12" value="" name="phno">
+=======
+              <input class="form-control" type="text" maxlength="10" value="" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" name="panno" required>
+            </div>
+      </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label" type="text" >Phone Number*(91xxxxxxxxxx)</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" maxlength="12" value="" pattern="[9]{1}[1]{1}[0-9]{10}" name="phno" required>
+>>>>>>> db0fa121c454763517ae3ff234cb3be6a8038d35
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" name="email" value="{{curuser['email']}}">
+              <input class="form-control" type="text" name="email" value="">
             </div>
           </div>
 
@@ -146,11 +156,35 @@ function Check(val){
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label" type="text" pattern="[0-9]{10}$" required >Emergency Contact*(91xxxxxxxxxx)</label>
+            <label class="col-md-3 control-label" type="text"  >Emergency Contact*(91xxxxxxxxxx)</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" maxlength="12" value="{{curuser['emrcntct']}}" name="emrcntct">
+
+              <input class="form-control" type="text" maxlength="12" value="" pattern="[9][1][0-9]{10}"   name="emrcntct" required>
+
             </div>
           </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Medication</label>
+            <div class="col-lg-8">
+          <table class="table table-bordered table-condensed">
+            <thead>
+            <tr>
+                <th rowspan="2">Medicine Name</th>
+                <td><input type="text" class="form-control" value=" " name="m1" /></td>
+
+
+            </tr>
+        </thead>
+    <tbody>
+        <tr>
+           <th rowspan="2">Time</th>
+           <td><input type="text" class="form-control"  value="" name="t1"/></td>
+
+        </tr>
+    </tbody>
+</table>
+              </div>
+            </div>
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">

@@ -11,17 +11,11 @@ import os
 salt=bcrypt.gensalt()
 connection=MongoClient('localhost',27017)
 db=connection.Users
+
 app=Flask(__name__)
-app.config.from_object(__name__)
-app.secret_key='my secret'
-# app.config.update(
-#     # DEBUG=True,
-#     SECRET_KEY='ABC'
-# )
+
 @app.route('/')
-def home():
-    # if 'username' in session:
-    #     return redirect(url_for('profile'))
+def indexpage():
     return render_template('index.html')
 @app.route('/login',methods=['GET', 'POST'])
 def login():
@@ -57,6 +51,10 @@ def register():
 
 @app.route('/profile',methods=['GET', 'POST'])
 def profile():
+    if   request.method=='POST':
+        db.profile.insert({'first_name':request.form['first_name'],'phno':request.form['phno'],'allergies':request.form['allergies'],'diabeties':request.form['diabeties'],'heart':request.form['heart'],'dob':request.form['dob'],'last_name':request.form['last_name'],'email':request.form['email'],'gender':request.form['gender'],'panno':request.form['panno'],'m1':request.form['m1'],'t1':request.form['t1'],'blood_group':request.form['blood_group'],'emrcntct':request.form['emrcntct'],'bp':request.form['bp']})
+        print 'everything inserted'
+        # render_template('profile.html',)
     if request.method=='POST':
         if 'username' in session:
 
